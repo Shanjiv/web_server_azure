@@ -1,5 +1,3 @@
-# web_server_azure
-
 # Azure Infrastructure Operations Project: Deploying a scalable IaaS web server in Azure
 
 ### Getting Started
@@ -54,6 +52,23 @@
      ```
    - You can also manually delete the resource group from the Azure portal if needed.
 
+### Customizing `vars.tf`
+
+The `vars.tf` file contains several variables that allow you to customize the deployment according to your needs. Here’s a brief description of what each variable does and how you might want to change them:
+
+- **`location`:** The Azure region where your resources will be deployed. The default is `West Europe`, but you can change it to any region supported by Azure.
+- **`resource_group_name`:** The name of the resource group where all resources will be created. You can use an existing resource group or create a new one.
+- **`vnet_name`:** The name of the virtual network. Adjust this if you have a specific naming convention or if you want to use an existing virtual network.
+- **`subnet_name`:** The name of the subnet within the virtual network. Customize it according to your subnet structure.
+- **`nsg_name`:** The name of the Network Security Group (NSG). You can change it to fit your naming standards or existing NSGs.
+- **`lb_name`:** The name of the load balancer. Modify it if needed.
+- **`availability_set_name`:** The name of the availability set. Adjust if you have specific availability set requirements.
+- **`vm_count`:** The number of virtual machines to deploy. The default is `2`, but you can increase or decrease this based on your needs.
+- **`vm_size`:** The size of the virtual machines. The default is `Standard_B1s`, but you can select a different size according to the workload.
+- **`admin_username` and `admin_password`:** The credentials for the VMs. Ensure you use secure values.
+- **`packer_image_name`:** The name of the image created by Packer. Ensure this matches the image you built with Packer.
+- **`tags`:** Tags applied to all resources. Modify or add more tags as required by your organization.
+
 ### Output
 
 After successfully running the Packer and Terraform templates, you should expect the following:
@@ -73,5 +88,3 @@ After successfully running the Packer and Terraform templates, you should expect
 
 3. **Accessing the Deployed Application:**
    - You can access the deployed web application by navigating to the public IP address associated with the load balancer in your web browser. You should see a "Hello, World!" message indicating that the web server is running correctly.
-
-

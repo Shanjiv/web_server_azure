@@ -28,26 +28,50 @@ resource "azurerm_network_security_group" "main" {
   resource_group_name = data.azurerm_resource_group.existing.name
 
   security_rule {
-    name                       = "allow_inbound_ssh"
+    name                       = "deny_all_inbound"
     priority                   = 100
     direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
+    access                     = "Deny"
+    protocol                   = "*"
     source_port_range          = "*"
-    destination_port_range     = "22"
+    destination_port_range     = "*"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
 
   security_rule {
-    name                       = "allow_inbound_http"
+    name                       = "allow_inbound_vnet"
     priority                   = 101
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "10.0.0.0/16"
+    destination_address_prefix = "10.0.0.0/16"
+  }
+
+  security_rule {
+    name                       = "allow_outbound_vnet"
+    priority                   = 102
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "10.0.0.0/16"
+    destination_address_prefix = "10.0.0.0/16"
+  }
+
+  security_rule {
+    name                       = "allow_inbound_http_from_lb"
+    priority                   = 103
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "80"
-    source_address_prefix      = "*"
+    source_address_prefix      = "10.0.0.0/16"  # Assuming the LB is in the same VNet
     destination_address_prefix = "*"
   }
 

@@ -1,8 +1,8 @@
 {
 	"variables": {
-	  "client_id": "placeholder",
-	  "client_secret": "placeholder", 
-	  "subscription_id": "placeholder",
+	  "client_id": "your-client-id-placeholder",
+	  "client_secret": "your-client-secret-placeholder",
+	  "subscription_id": "your-subscription-id-placeholder",
 	  "tenant_id": "{{env `ARM_TENANT_ID`}}"
 	},
 	"builders": [{
@@ -32,4 +32,5 @@
 	  "inline_shebang": "/bin/sh -x",
 	  "type": "shell"
 	}]
-}
+  }
+  
