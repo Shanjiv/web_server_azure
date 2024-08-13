@@ -8,10 +8,6 @@ For this project, you will write a Packer template and a Terraform template to d
 ### Getting Started
 1. Clone this repository
 
-2. Create your infrastructure as code
-
-3. Update this README to reflect how someone would use your code.
-
 ### Dependencies
 1. Create an [Azure Account](https://portal.azure.com) 
 2. Install the [Azure command line interface](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
